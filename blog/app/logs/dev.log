@@ -8933,3 +8933,5 @@
 [2015-03-12 11:18:05] doctrine.DEBUG: CREATE INDEX IDX_1483A5E9827402C ON users (genderId) [] []
 [2015-03-12 11:18:22] doctrine.DEBUG: SELECT u0_.id AS id0, u0_.name AS name1, u0_.email AS email2, u0_.birth AS birth3, u0_.genderId AS genderId4, g1_.id AS id5, g1_.gender AS gender6, u0_.genderId AS genderId7 FROM users u0_ LEFT JOIN gender g1_ ON u0_.genderId = g1_.id WHERE u0_.birth = ? ["2015-03-12 00:00:00"] []
 [2015-03-12 11:18:24] app.ERROR: Exception occurred while flushing email queue: Failed to authenticate on SMTP server with username "XXX@gmail.com" using 1 possible authenticators [] []
+[2015-03-12 16:22:44] doctrine.DEBUG: SELECT u.*,g.gender FROM users u LEFT JOIN gender g ON g.id = u.genderId [] []
+[2015-03-12 16:22:46] app.ERROR: Exception occurred while flushing email queue: Failed to authenticate on SMTP server with username "XXX@gmail.com" using 1 possible authenticators [] []

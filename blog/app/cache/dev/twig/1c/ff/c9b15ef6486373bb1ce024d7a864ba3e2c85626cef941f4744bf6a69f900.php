@@ -28,11 +28,11 @@ class __TwigTemplate_1cffc9b15ef6486373bb1ce024d7a864ba3e2c85626cef941f4744bf6a6
         // line 3
         if (((isset($context["gender"]) ? $context["gender"] : $this->getContext($context, "gender")) == (isset($context["man"]) ? $context["man"] : $this->getContext($context, "man")))) {
             // line 4
-            echo "        Uvazhaemy
+            echo "        Уважаемый
     ";
         } else {
             // line 6
-            echo "        Uvazhaemaja
+            echo "        Уважаемая
     ";
         }
         // line 7
