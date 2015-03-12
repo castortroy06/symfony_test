@@ -25,8 +25,14 @@ class LoadGenderData extends AbstractFixture implements FixtureInterface
             $this->addReference($key, $object);
 
             $manager->persist($object);
-            $manager->flush();
         }
+
+        $manager->flush();
+    }
+
+    public function getOrder()
+    {
+        return 2; // the order in which fixtures will be loaded
     }
 
 }

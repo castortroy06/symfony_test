@@ -101,26 +101,26 @@ class Users
     }
 
     /**
-     * Set gender_id
+     * Set genderId
      *
      * @param integer $genderId
      * @return Users
      */
     public function setGenderId($genderId)
     {
-        $this->gender_id = $genderId;
+        $this->genderId = $genderId;
 
         return $this;
     }
 
     /**
-     * Get gender_id
+     * Get genderId
      *
      * @return integer
      */
     public function getGenderId()
     {
-        return $this->gender_id;
+        return $this->genderId;
     }
 
     /**

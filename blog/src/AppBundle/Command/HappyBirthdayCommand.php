@@ -20,7 +20,7 @@ class HappyBirthdayCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $mail = $this->getApplication()->getKernel()->getContainer()->get('customMail');
-        $text = $mail->happyBirthdayMailAction();
+        $text = $mail->happyBirthdayMail();
         $output->writeln($text);
     }
 }

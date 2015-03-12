@@ -14,14 +14,20 @@ class UsersRepository extends EntityRepository
 {
     public function getBirthdayUsers()
     {
-        return $this->getEntityManager()->createQueryBuilder()
-            ->select(array('u', 'g'))
+        $connection = $this->getEntityManager()->getConnection()->prepare("SELECT u.*,g.gender FROM users u LEFT JOIN gender g ON g.id = u.genderId");
+        $connection->execute();
+        return $connection->fetchAll();
+
+
+       /* return $this->getEntityManager()->createQueryBuilder()
+            ->select(array('u', 'g.gender as gender'))
             ->from('AppBundle\Entity\Users', 'u')
             ->leftJoin('u.gender', 'g')
             ->where('u.birth = :birth')
             ->setParameter('birth', new \DateTime(date('Y-m-d')))
             ->getQuery()
             ->getResult();
+       */
     }
 
 }
