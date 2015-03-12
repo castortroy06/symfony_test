@@ -1,0 +1,9 @@
+{% block body %}
+<p>
+    {% if user.getGender().getGender() == 'муж' %}
+        Уважаемый
+    {% else %}
+        Уважаемая
+    {% endif %} {{ user.getName() }}, поздравляем Вас с днем рождения! От чыстага сэрца!
+</p>
+{% endblock %}
