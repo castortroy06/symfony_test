@@ -23,7 +23,7 @@ class CustomMailManager
 
     }
 
-    protected function sendMail($user, $attachmentPath)
+    protected function sendMail($user, $attachmentPath = false)
     {
         $message = \Swift_Message::newInstance()
             ->setSubject('Happy Birthday!')
@@ -32,10 +32,13 @@ class CustomMailManager
             ->setBody($this->twig->render(
                 'AppBundle:emails:happybithday.html.twig',
                 array('name' => $user['name'],
-                      'gender' => $user['gender'],
-                      'man' => Gender::GENDER_MAN)
-            ), 'text/html')
-            ->attach(Swift_Attachment::fromPath($attachmentPath));
+                    'gender' => $user['gender'],
+                    'man' => Gender::GENDER_MAN)
+            ), 'text/html');
+        if($attachmentPath){
+            $message->attach(Swift_Attachment::fromPath($attachmentPath));
+        }
+
         if ($this->mailer->send($message)) {
             return true;
         }
