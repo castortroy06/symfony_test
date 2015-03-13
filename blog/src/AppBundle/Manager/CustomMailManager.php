@@ -8,14 +8,13 @@ use Swift_Attachment;
 use Swift_Mailer;
 use Twig_Environment;
 
-
 class CustomMailManager
 {
     protected $em;
     protected $twig;
     protected $mailer;
 
-    function __construct(EntityManager $em, Twig_Environment $twig, Swift_Mailer $mailer)
+    public function __construct(EntityManager $em, Twig_Environment $twig, Swift_Mailer $mailer)
     {
         $this->em = $em;
         $this->twig = $twig;
@@ -28,14 +27,12 @@ class CustomMailManager
         $message = \Swift_Message::newInstance()
             ->setSubject('Happy Birthday!')
             ->setFrom('denis.pelyukhow@gmail.com')
-            ->setTo($user['email'])
+            ->setTo($user['user']->getEmail())
             ->setBody($this->twig->render(
                 'AppBundle:emails:happybithday.html.twig',
-                array('name' => $user['name'],
-                    'gender' => $user['gender'],
-                    'man' => Gender::GENDER_MAN)
+                array('user' => $user)
             ), 'text/html');
-        if($attachmentPath){
+        if ($attachmentPath) {
             $message->attach(Swift_Attachment::fromPath($attachmentPath));
         }
 
@@ -60,7 +57,7 @@ class CustomMailManager
             }
             //send message
             if ($this->sendMail($user, $attachmentPath)) {
-                $emailsSend[] = $user['email'];
+                $emailsSend[] = $user['user']->getEmail();
             }
         }
 

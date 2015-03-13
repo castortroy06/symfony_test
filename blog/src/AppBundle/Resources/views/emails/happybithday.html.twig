@@ -1,9 +1,9 @@
 {% block body %}
 <p>
-    {% if gender == man %}
+    {% if user.gender == constant('\\AppBundle\\Entity\\Gender::GENDER_MAN') %}
         Уважаемый
     {% else %}
         Уважаемая
-    {% endif %} {{ name }}, поздравляем Вас с днем рождения! От чыстага сэрца!
+    {% endif %} {{ user.user.name }}, поздравляем Вас с днем рождения! От чыстага сэрца!
 </p>
 {% endblock %}

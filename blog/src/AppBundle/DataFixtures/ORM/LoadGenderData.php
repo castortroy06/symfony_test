@@ -8,7 +8,6 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Entity\Gender;
 
-
 class LoadGenderData extends AbstractFixture implements FixtureInterface
 {
     /**
@@ -34,5 +33,4 @@ class LoadGenderData extends AbstractFixture implements FixtureInterface
     {
         return 1; // the order in which fixtures will be loaded
     }
-
 }

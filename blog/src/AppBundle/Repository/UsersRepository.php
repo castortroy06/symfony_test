@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Repository;
+
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -13,21 +14,13 @@ class UsersRepository extends EntityRepository
 {
     public function getBirthdayUsers()
     {
-        $connection = $this->getEntityManager()->getConnection()->prepare("SELECT u.*,g.gender FROM users u LEFT JOIN gender g ON g.id = u.genderId WHERE u.birth = :birth");
-        $params = array('birth'=>date('Y-m-d'));
-        $connection->execute($params);
-        return $connection->fetchAll();
-
-
-       /* return $this->getEntityManager()->createQueryBuilder()
-            ->select(array('u', 'g.gender as gender'))
+        return $this->getEntityManager()->createQueryBuilder()
+            ->select(array('u as user', 'g.gender as gender'))
             ->from('AppBundle\Entity\Users', 'u')
             ->leftJoin('u.gender', 'g')
             ->where('u.birth = :birth')
             ->setParameter('birth', new \DateTime(date('Y-m-d')))
             ->getQuery()
             ->getResult();
-       */
     }
-
 }
