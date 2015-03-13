@@ -8997,3 +8997,7 @@
 [2015-03-12 16:31:11] doctrine.DEBUG: INSERT INTO users (name, email, birth, genderId) VALUES (?, ?, ?, ?) {"1":"user9","2":"user9@testmail.com","3":"2015-03-12 00:00:00","4":2} []
 [2015-03-12 16:31:11] doctrine.DEBUG: INSERT INTO users (name, email, birth, genderId) VALUES (?, ?, ?, ?) {"1":"user10","2":"user10@testmail.com","3":"2015-03-12 00:00:00","4":1} []
 [2015-03-12 16:31:11] doctrine.DEBUG: "COMMIT" [] []
+[2015-03-12 16:34:49] doctrine.DEBUG: SELECT u.*,g.gender FROM users u LEFT JOIN gender g ON g.id = u.genderId [] []
+[2015-03-12 16:34:51] app.ERROR: Exception occurred while flushing email queue: Failed to authenticate on SMTP server with username "XXX@gmail.com" using 1 possible authenticators [] []
+[2015-03-13 09:24:43] doctrine.DEBUG: SELECT u.*,g.gender FROM users u LEFT JOIN gender g ON g.id = u.genderId WHERE u.birth = :birth {"birth":"2015-03-13"} []
+[2015-03-13 09:25:21] doctrine.DEBUG: SELECT u.*,g.gender FROM users u LEFT JOIN gender g ON g.id = u.genderId WHERE u.birth = :birth {"birth":"2015-03-13"} []

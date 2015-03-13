@@ -13,8 +13,9 @@ class UsersRepository extends EntityRepository
 {
     public function getBirthdayUsers()
     {
-        $connection = $this->getEntityManager()->getConnection()->prepare("SELECT u.*,g.gender FROM users u LEFT JOIN gender g ON g.id = u.genderId");
-        $connection->execute();
+        $connection = $this->getEntityManager()->getConnection()->prepare("SELECT u.*,g.gender FROM users u LEFT JOIN gender g ON g.id = u.genderId WHERE u.birth = :birth");
+        $params = array('birth'=>date('Y-m-d'));
+        $connection->execute($params);
         return $connection->fetchAll();
 
 
