@@ -22,14 +22,14 @@ class CustomMailManager
 
     }
 
-    protected function sendMail($user, $attachmentPath = false)
+    protected function sendMail($user, $subject, $from, $template, $attachmentPath = false)
     {
         $message = \Swift_Message::newInstance()
-            ->setSubject('Happy Birthday!')
-            ->setFrom('denis.pelyukhow@gmail.com')
+            ->setSubject($subject)
+            ->setFrom($from)
             ->setTo($user['user']->getEmail())
             ->setBody($this->twig->render(
-                'AppBundle:emails:happybithday.html.twig',
+                $template,
                 array('user' => $user)
             ), 'text/html');
         if ($attachmentPath) {
@@ -56,7 +56,7 @@ class CustomMailManager
                 $attachmentPath = 'http://zastavki-oboi.ru/avatar/thumbs/mini_pingvin_linuks-468.jpg';
             }
             //send message
-            if ($this->sendMail($user, $attachmentPath)) {
+            if ($this->sendMail($user, 'Happy Birthday!', 'denis.pelyukhow@gmail.com', 'AppBundle:emails:happybithday.html.twig', $attachmentPath)) {
                 $emailsSend[] = $user['user']->getEmail();
             }
         }
