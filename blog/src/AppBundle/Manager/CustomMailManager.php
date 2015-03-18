@@ -56,7 +56,10 @@ class CustomMailManager
                 $attachmentPath = 'http://zastavki-oboi.ru/avatar/thumbs/mini_pingvin_linuks-468.jpg';
             }
             //send message
-            if ($this->sendMail($user, 'Happy Birthday!', 'denis.pelyukhow@gmail.com', 'AppBundle:emails:happybithday.html.twig', $attachmentPath)) {
+            $theme = 'Happy Birthday!';
+            $email = 'denis.pelyukhow@gmail.com';
+            $template = 'AppBundle:emails:happybithday.html.twig';
+            if ($this->sendMail($user, $theme, $email, $template, $attachmentPath)) {
                 $emailsSend[] = $user['user']->getEmail();
             }
         }
